@@ -29,9 +29,9 @@ function getManifest( callback ) {
 function updateData() {
 
 	var default_count = localStorage.getItem( 'com.bit51.chrome.bettergoogletasks.default_count' ) || TASKS_COUNT; //figure out how we should count tasks
-    var countinterval = localStorage.getItem( 'com.bit51.chrome.bettergoogletasks.countinterval' ) || TASKS_COUNTINTERVAL; //interval to refresh the badge count
-    var count_list = localStorage.getItem( 'com.bit51.chrome.bettergoogletasks.count_list' ) || TASKS_LIST; //show only the lists they want
-    var default_list = localStorage.getItem( 'com.bit51.chrome.bettergoogletasks.default_list' ) || TASKS_DEFAULT_LIST; //The default tasks list
+	var countinterval = localStorage.getItem( 'com.bit51.chrome.bettergoogletasks.countinterval' ) || TASKS_COUNTINTERVAL; //interval to refresh the badge count
+	var count_list = localStorage.getItem( 'com.bit51.chrome.bettergoogletasks.count_list' ) || TASKS_LIST; //show only the lists they want
+	var default_list = localStorage.getItem( 'com.bit51.chrome.bettergoogletasks.default_list' ) || TASKS_DEFAULT_LIST; //The default tasks list
 	var updateTaskInterval = countinterval * ( 1000 * 60 );
 
 	badgeCount = 0;
@@ -85,33 +85,33 @@ function updateData() {
 					strlength = str.length;
 					startpos = str.indexOf( "<option value=" );
 
-                    if ( ( count_list === 'def' && currid == default_list ) || count_list === 'all' ) {
+					if ( ( count_list === 'def' && currid == default_list ) || count_list === 'all' ) {
 
-                        if ( taskLists.length > 0 ) {
+						if ( taskLists.length > 0 ) {
 
-                            for ( var j = 0; j < taskLists.length; j ++ ) {
+							for ( var j = 0; j < taskLists.length; j ++ ) {
 
-                                if ( taskLists[j].id == currid ) {
-                                    currid = - 1;
-                                }
+								if ( taskLists[j].id == currid ) {
+									currid = - 1;
+								}
 
-                            }
+							}
 
-                        } else {
+						} else {
 
-                            taskLists[i] = { "id": currid, "title": currtitle };
+							taskLists[i] = { "id": currid, "title": currtitle };
 
-                        }
+						}
 
-                        if ( currid != - 1 ) {
+						if ( currid != - 1 ) {
 
-                            taskLists[i] = { "id": currid, "title": currtitle };
+							taskLists[i] = { "id": currid, "title": currtitle };
 
-                        }
+						}
 
-                        i ++;
+						i ++;
 
-                    }
+					}
 
 				}
 
@@ -369,7 +369,7 @@ function getNotifications() {
 
 		var notify = localStorage.getItem( 'com.bit51.chrome.bettergoogletasks.notify' ) || TASKS_NOTIFY; //The user selected option for notifications
 
-        localStorage.setItem( 'com.bit51.chrome.bettergoogletasks.last_notify', new Date().getTime() );
+		localStorage.setItem( 'com.bit51.chrome.bettergoogletasks.last_notify', new Date().getTime() );
 
 		if ( notify > 0 ) {
 

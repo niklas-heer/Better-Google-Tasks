@@ -61,7 +61,7 @@ function loadOptions() {
  * Save all options
  */
 function saveOptions() {
-	
+
 	var default_count = $( 'input[name=default_count]:checked' ).val() || TASKS_COUNT;
 	var hide_zero = $( 'input[name=hide_zero]:checked' ).val() || TASKS_ZERO;
 	var default_pop = $( 'input[name=default_pop]:checked' ).val() || TASKS_POPUP;
