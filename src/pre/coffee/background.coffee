@@ -22,7 +22,6 @@ getManifest (manifest) ->
 	localStorage.setItem "com.bit51.chrome.bettergoogletasks.version", manifest.version
 	return
 
-
 #Set up the appropriate listeners
 chrome.extension.onConnect.addListener (port) ->
 	console.assert port.name is "BGT"
