@@ -1,13 +1,28 @@
-var TASKS_URL               = 'https://mail.google.com/tasks/canvas';
-var TASKS_COUNT             = 'all';
-var TASKS_COUNTINTERVAL     = 60;
-var TASKS_TITLE             = 'Tasks Remaining: ';
-var TASKS_URL_RE_           = /https?\:\/\/mail.google.com\/tasks\/*/;
-var TASKS_DEFAULT_LIST      = '';
-var TASKS_POPUP             = 'full';
-var TASKS_LIST              = 'all';
-var TASKS_WIDTH             = '700';
-var TASKS_HEIGHT            = '400';
-var TASKS_NOTIFY            = '0';
-var TASKS_ZERO              = '0';
-var TASKS_OPENBEHAVIOR      = '0';
+(function() {
+  window.TASKS_URL = "https://mail.google.com/tasks/canvas";
+
+  window.TASKS_COUNT = "all";
+
+  window.TASKS_COUNTINTERVAL = 60;
+
+  window.TASKS_TITLE = "Tasks Remaining: ";
+
+  window.TASKS_URL_RE_ = /https?\:\/\/mail.google.com\/tasks\/*/;
+
+  window.TASKS_DEFAULT_LIST = "";
+
+  window.TASKS_POPUP = "full";
+
+  window.TASKS_LIST = "all";
+
+  window.TASKS_WIDTH = "700";
+
+  window.TASKS_HEIGHT = "400";
+
+  window.TASKS_NOTIFY = "0";
+
+  window.TASKS_ZERO = "0";
+
+  window.TASKS_OPENBEHAVIOR = "0";
+
+}).call(this);
