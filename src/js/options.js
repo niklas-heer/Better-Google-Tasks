@@ -4,9 +4,7 @@ Load options into support form
 
 
 (function() {
-  var loadOptions, resetOptions, saveOptions, setSelectByValue;
-
-  loadOptions = function() {
+  window.loadOptions = function() {
     var count_list, countinterval, default_count, default_height, default_list, default_pop, default_width, hide_zero, i, listSel, listSelected, notify, openbehavior, taskLists;
     taskLists = chrome.extension.getBackgroundPage().taskLists;
     hide_zero = localStorage.getItem("com.bit51.chrome.bettergoogletasks.hide_zero") || TASKS_ZERO;
@@ -46,7 +44,7 @@ Load options into support form
   */
 
 
-  saveOptions = function() {
+  window.saveOptions = function() {
     var count_list, countinterval, default_count, default_height, default_list, default_pop, default_width, hide_zero, notify, openbehavior, port;
     default_count = $("input[name=default_count]:checked").val() || TASKS_COUNT;
     hide_zero = $("input[name=hide_zero]:checked").val() || TASKS_ZERO;
@@ -87,7 +85,7 @@ Load options into support form
   */
 
 
-  setSelectByValue = function(formName, elemName, defVal) {
+  window.setSelectByValue = function(formName, elemName, defVal) {
     var combo, i, rv;
     combo = document.forms[formName].elements[elemName];
     rv = false;
@@ -108,7 +106,7 @@ Load options into support form
   */
 
 
-  resetOptions = function() {
+  window.resetOptions = function() {
     var port;
     localStorage.removeItem("com.bit51.chrome.bettergoogletasks.default_count");
     localStorage.removeItem("com.bit51.chrome.bettergoogletasks.hide_zero");

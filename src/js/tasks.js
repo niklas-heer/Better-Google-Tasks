@@ -6,9 +6,7 @@ Find the current tab
 
 
 (function() {
-  var closeTasks, getTaskFrame, getTasksTab, openTasks, printTasks;
-
-  getTasksTab = function(callback) {
+  window.getTasksTab = function(callback) {
     chrome.tabs.getAllInWindow(undefined, function(tabs) {
       var i, tab;
       i = 0;
@@ -29,7 +27,7 @@ Find the current tab
   */
 
 
-  openTasks = function() {
+  window.openTasks = function() {
     var defaultlist, openbehavior;
     openbehavior = localStorage.getItem("com.bit51.chrome.bettergoogletasks.openbehavior") || TASKS_OPENBEHAVIOR;
     defaultlist = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_list") || TASKS_DEFAULT_LIST;
@@ -57,7 +55,7 @@ Find the current tab
     window.close();
   };
 
-  printTasks = function() {
+  window.printTasks = function() {
     getTasksTab(function(tab) {
       if (tab) {
         chrome.tabs.update(tab.id, {
@@ -72,7 +70,7 @@ Find the current tab
     });
   };
 
-  closeTasks = function() {
+  window.closeTasks = function() {
     window.close();
   };
 
@@ -81,7 +79,7 @@ Find the current tab
   */
 
 
-  getTaskFrame = function() {
+  window.getTaskFrame = function() {
     var address, default_height, default_pop, default_width, defaultlist, footer, frame, port, url;
     chrome.extension.onConnect.addListener(function(port) {
       console.assert(port.name === "BGTOpen");

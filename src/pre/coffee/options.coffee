@@ -7,7 +7,7 @@
 ###
 Load options into support form
 ###
-loadOptions = ->
+window.loadOptions = ->
 	taskLists = chrome.extension.getBackgroundPage().taskLists
 	hide_zero = localStorage.getItem("com.bit51.chrome.bettergoogletasks.hide_zero") or TASKS_ZERO
 	default_count = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_count") or TASKS_COUNT
@@ -42,7 +42,7 @@ loadOptions = ->
 ###
 Save all options
 ###
-saveOptions = ->
+window.saveOptions = ->
 	default_count = $("input[name=default_count]:checked").val() or TASKS_COUNT
 	hide_zero = $("input[name=hide_zero]:checked").val() or TASKS_ZERO
 	default_pop = $("input[name=default_pop]:checked").val() or TASKS_POPUP
@@ -76,7 +76,7 @@ Select default list
 @param defVal
 @returns {boolean}
 ###
-setSelectByValue = (formName, elemName, defVal) ->
+window.setSelectByValue = (formName, elemName, defVal) ->
 	combo = document.forms[formName].elements[elemName]
 	rv = false
 	if combo.type is "select-one"
@@ -90,7 +90,7 @@ setSelectByValue = (formName, elemName, defVal) ->
 ###
 reset uptions to default
 ###
-resetOptions = ->
+window.resetOptions = ->
 	localStorage.removeItem "com.bit51.chrome.bettergoogletasks.default_count"
 	localStorage.removeItem "com.bit51.chrome.bettergoogletasks.hide_zero"
 	localStorage.removeItem "com.bit51.chrome.bettergoogletasks.default_list"
@@ -106,6 +106,7 @@ resetOptions = ->
 	port.postMessage message: "Update"
 	window.close()
 	return
+
 $(document).ready ->
 	loadOptions()
 	$("#extVersion").prepend localStorage.getItem("com.bit51.chrome.bettergoogletasks.version")

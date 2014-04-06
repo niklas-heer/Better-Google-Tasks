@@ -17,7 +17,7 @@ Retrieves the manifest file for use in the extension
 
 @param callback
 ###
-getManifest = (callback) ->
+window.getManifest = (callback) ->
 	xhr = new XMLHttpRequest()
 	xhr.onload = ->
 		callback JSON.parse(xhr.responseText)
@@ -30,7 +30,7 @@ getManifest = (callback) ->
 ###
 Gets task and objects counts from Google server
 ###
-updateData = ->
+window.updateData = ->
 	default_count = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_count") or TASKS_COUNT #figure out how we should count tasks
 	countinterval = localStorage.getItem("com.bit51.chrome.bettergoogletasks.countinterval") or TASKS_COUNTINTERVAL #interval to refresh the badge count
 	count_list = localStorage.getItem("com.bit51.chrome.bettergoogletasks.count_list") or TASKS_LIST #show only the lists they want
@@ -147,7 +147,8 @@ updateData = ->
 		return
 	), updateTaskInterval
 	return
-dataError = ->
+
+window.dataError = ->
 	frame = document.createElement("iframe")
 	frame.setAttribute "src", address
 	frame.setAttribute "id", "tasksPage"
@@ -159,7 +160,7 @@ dataError = ->
 Get individual tasks
 @param array list array of task lists
 ###
-getTasks = (list) ->
+window.getTasks = (list) ->
 	default_count = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_count") or TASKS_COUNT #figure out how we should count tasks
 	todays_date = todaysDate()
 	xhr = new XMLHttpRequest()
@@ -187,7 +188,7 @@ getTasks = (list) ->
 ###
 Update the badge count
 ###
-updateBadge = ->
+window.updateBadge = ->
 	default_count = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_count") or TASKS_COUNT #figure out how we should count tasks
 	unless default_count is "none"
 		if taskLists is null #task lists are invalid. User probably isn't logged in.
@@ -254,7 +255,7 @@ updateBadge = ->
 ###
 Setup notifications
 ###
-getNotifications = ->
+window.getNotifications = ->
 	lastNotify = localStorage.getItem("com.bit51.chrome.bettergoogletasks.last_notify") or 0 #the time of the last update
 	if lastNotify < (new Date().getTime() - (1000 * 60 * 60 * 12))
 		notify = localStorage.getItem("com.bit51.chrome.bettergoogletasks.notify") or TASKS_NOTIFY #The user selected option for notifications
@@ -310,7 +311,7 @@ getNotifications = ->
 Returns today's date in the format yyyy/mm/dd
 @returns {string}
 ###
-todaysDate = ->
+window.todaysDate = ->
 	today = new Date()
 	yy = today.getYear()
 	mm = today.getMonth() + 1
@@ -325,7 +326,8 @@ todaysDate = ->
 	#pad the day
 	dd = "0" + dd  if dd < 10
 	yy.toString() + mm.toString() + dd.toString()
-inOpen = ->
+
+window.inOpen = ->
 	port = chrome.extension.getViews(type: "popup")
 	if port.length > 0
 		window.setTimeout (->
@@ -335,9 +337,10 @@ inOpen = ->
 	else
 		updateData()
 	return
-taskLists = null
-tasks = null
-badgeCount = 0
-tasksDueToday = 0
-tasksOverdue = 0
-listCount = 0
+
+window.taskLists = null
+window.tasks = null
+window.badgeCount = 0
+window.tasksDueToday = 0
+window.tasksOverdue = 0
+window.listCount = 0

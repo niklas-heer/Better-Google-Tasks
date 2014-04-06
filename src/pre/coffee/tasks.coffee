@@ -9,7 +9,7 @@ Find the current tab
 
 @param callback a callback function
 ###
-getTasksTab = (callback) ->
+window.getTasksTab = (callback) ->
 	chrome.tabs.getAllInWindow `undefined`, (tabs) ->
 		i = 0
 		tab = undefined
@@ -27,7 +27,7 @@ getTasksTab = (callback) ->
 ###
 Handle opening tasks in new window or new tab
 ###
-openTasks = ->
+window.openTasks = ->
 	openbehavior = localStorage.getItem("com.bit51.chrome.bettergoogletasks.openbehavior") or TASKS_OPENBEHAVIOR
 	defaultlist = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_list") or TASKS_DEFAULT_LIST
 	if openbehavior is "1"
@@ -42,7 +42,8 @@ openTasks = ->
 			chrome.tabs.create url: "https://mail.google.com/tasks/canvas"
 	window.close()
 	return
-printTasks = ->
+
+window.printTasks = ->
 	getTasksTab (tab) ->
 		if tab
 			chrome.tabs.update tab.id,
@@ -54,14 +55,15 @@ printTasks = ->
 		return
 
 	return
-closeTasks = ->
+
+window.closeTasks = ->
 	window.close()
 	return
 
 ###
 setup the popup
 ###
-getTaskFrame = ->
+window.getTaskFrame = ->
 	chrome.extension.onConnect.addListener (port) ->
 		console.assert port.name is "BGTOpen"
 		return
@@ -90,6 +92,7 @@ getTaskFrame = ->
 	footer = document.getElementById("footer")
 	footer.style.width = (default_width - 6)
 	return
+
 $(document).ready ->
 	getTaskFrame()
 	openbehavior = localStorage.getItem("com.bit51.chrome.bettergoogletasks.openbehavior") or TASKS_OPENBEHAVIOR

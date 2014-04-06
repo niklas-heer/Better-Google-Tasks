@@ -6,9 +6,7 @@ Retrieves the manifest file for use in the extension
 
 
 (function() {
-  var badgeCount, dataError, getManifest, getNotifications, getTasks, inOpen, listCount, taskLists, tasks, tasksDueToday, tasksOverdue, todaysDate, updateBadge, updateData;
-
-  getManifest = function(callback) {
+  window.getManifest = function(callback) {
     var xhr;
     xhr = new XMLHttpRequest();
     xhr.onload = function() {
@@ -23,7 +21,7 @@ Retrieves the manifest file for use in the extension
   */
 
 
-  updateData = function() {
+  window.updateData = function() {
     var badgeCount, count_list, countinterval, default_count, default_list, taskLists, tasks, tasksDueToday, tasksOverdue, updateTaskInterval, xhr;
     default_count = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_count") || TASKS_COUNT;
     countinterval = localStorage.getItem("com.bit51.chrome.bettergoogletasks.countinterval") || TASKS_COUNTINTERVAL;
@@ -139,7 +137,7 @@ Retrieves the manifest file for use in the extension
     }), updateTaskInterval);
   };
 
-  dataError = function() {
+  window.dataError = function() {
     var frame;
     frame = document.createElement("iframe");
     frame.setAttribute("src", address);
@@ -154,7 +152,7 @@ Retrieves the manifest file for use in the extension
   */
 
 
-  getTasks = function(list) {
+  window.getTasks = function(list) {
     var default_count, todays_date, xhr;
     default_count = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_count") || TASKS_COUNT;
     todays_date = todaysDate();
@@ -193,7 +191,7 @@ Retrieves the manifest file for use in the extension
   */
 
 
-  updateBadge = function() {
+  window.updateBadge = function() {
     var default_count, hide_zero;
     default_count = localStorage.getItem("com.bit51.chrome.bettergoogletasks.default_count") || TASKS_COUNT;
     if (default_count !== "none") {
@@ -255,7 +253,7 @@ Retrieves the manifest file for use in the extension
   */
 
 
-  getNotifications = function() {
+  window.getNotifications = function() {
     var dtm, dtt, lastNotify, notificationOptions, notify, odm, odt, primaryMessage, ttitle;
     lastNotify = localStorage.getItem("com.bit51.chrome.bettergoogletasks.last_notify") || 0;
     if (lastNotify < (new Date().getTime() - (1000 * 60 * 60 * 12))) {
@@ -321,7 +319,7 @@ Retrieves the manifest file for use in the extension
   */
 
 
-  todaysDate = function() {
+  window.todaysDate = function() {
     var dd, mm, today, yy;
     today = new Date();
     yy = today.getYear();
@@ -339,7 +337,7 @@ Retrieves the manifest file for use in the extension
     return yy.toString() + mm.toString() + dd.toString();
   };
 
-  inOpen = function() {
+  window.inOpen = function() {
     var port;
     port = chrome.extension.getViews({
       type: "popup"
@@ -353,16 +351,16 @@ Retrieves the manifest file for use in the extension
     }
   };
 
-  taskLists = null;
+  window.taskLists = null;
 
-  tasks = null;
+  window.tasks = null;
 
-  badgeCount = 0;
+  window.badgeCount = 0;
 
-  tasksDueToday = 0;
+  window.tasksDueToday = 0;
 
-  tasksOverdue = 0;
+  window.tasksOverdue = 0;
 
-  listCount = 0;
+  window.listCount = 0;
 
 }).call(this);
